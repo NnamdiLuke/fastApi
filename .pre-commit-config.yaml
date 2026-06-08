@@ -1,18 +1,35 @@
-#for linting and formatting
-repos:
-- repo: https://github.com/astral-sh/ruff-pre-commit
-  # Ruff version.
-  rev: v0.15.16
-  hooks:
-    # Run the linter.
-    - id: ruff-check
-    # Run the formatter.
-    - id: ruff-format
+# #for linting and formatting
+# repos:
+# - repo: https://github.com/astral-sh/ruff-pre-commit
+#   # Ruff version.
+#   rev: v0.15.16
+#   hooks:
+#     # Run the linter.
+#     - id: ruff-check
+#     # Run the formatter.
+#     - id: ruff-format
 
-#for running test
-- repo: https://github.com/christophmeissner/pytest-pre-commit
-  rev: 1.0.0
-  hooks:
-  - id: pytest
-    pass_filenames: false
-    always_run: true
+# #for running test
+# - repo: https://github.com/christophmeissner/pytest-pre-commit
+#   rev: 1.0.0
+#   hooks:
+#   - id: pytest
+#     entry: bash -c 'PYTHONPATH=. pytest'
+#     # pass_filenames: false
+#     always_run: true
+
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.16
+    hooks:
+      - id: ruff-check
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true
